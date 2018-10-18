@@ -152,9 +152,9 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public String getGateway() {
+  public void getGateway(Promise p) {
     String ipAddress = Formatter.formatIpAddress(getDhcpInfo().gateway);
-    return ipAddress;
+    p.resolve(ipAddress);
   }
 
   @ReactMethod
