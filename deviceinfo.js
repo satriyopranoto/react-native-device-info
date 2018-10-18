@@ -137,6 +137,9 @@ export default {
   getIPAddress: function() {
     return RNDeviceInfo.getIpAddress();
   },
+  getGateway: function() {
+    return RNDeviceInfo.getGateway();
+  },
   getMACAddress: function() {
     return RNDeviceInfo.getMacAddress();
   },

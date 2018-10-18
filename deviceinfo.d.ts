@@ -31,6 +31,7 @@ declare const _default: {
   getLastUpdateTime: () => number;
   getSerialNumber: () => string;
   getIPAddress: () => Promise<string>
+  getGateway: () => String
   getMACAddress: () => Promise<string>
   getPhoneNumber: () => string;
   getAPILevel: () => number;

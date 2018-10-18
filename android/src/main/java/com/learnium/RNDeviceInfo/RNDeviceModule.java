@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiInfo;
+import android.net.DhcpInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
@@ -47,6 +48,7 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   ReactApplicationContext reactContext;
 
   WifiInfo wifiInfo;
+  DhcpInfo dhcpInfo;
 
   public RNDeviceModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -65,6 +67,14 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
       this.wifiInfo = manager.getConnectionInfo();
     }
     return this.wifiInfo;
+  }
+
+  private DhcpInfo getDhcpInfo() {
+    if (this.dhcpInfo == null) {
+      WifiManager manager = (WifiManager) reactContext.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+      this.dhcpInfo = manager.getDhcpInfo();
+    }
+    return this.dhcpInfo;
   }
 
   private String getCurrentLanguage() {
@@ -139,6 +149,12 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   public void isPinOrFingerprintSet(Callback callback) {
     KeyguardManager keyguardManager = (KeyguardManager) this.reactContext.getApplicationContext().getSystemService(Context.KEYGUARD_SERVICE); //api 16+
     callback.invoke(keyguardManager.isKeyguardSecure());
+  }
+
+  @ReactMethod
+  public String getGateway() {
+    String ipAddress = Formatter.formatIpAddress(getDhcpInfo().gateway);
+    return ipAddress;
   }
 
   @ReactMethod

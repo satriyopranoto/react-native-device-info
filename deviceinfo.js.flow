@@ -33,6 +33,7 @@ declare module.exports: {
   getSerialNumber: () => string,
   getAPILevel: () => number,
   getIPAddress: () => Promise<string>,
+  getGateway: () => string,
   getMACAddress: () => Promise<string>,
   getPhoneNumber: () => ?string,
   getCarrier: () => string,
