@@ -77,14 +77,7 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
     }
     return this.dhcpInfo;
   }
-  @ReactMethod
-  public String getImsiInfo() {
-    //if (this.imsiInfo == null) {
-      TelephonyManager manager = (TelephonyManager) reactContext.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-     // this.imsiInfo = manager.getSubscriberId();
-    //}
-    return manager.getSubscriberId();//this.imsiInfo;
-  }
+ 
 
   private String getCurrentLanguage() {
     Locale current;
@@ -214,7 +207,11 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
     TelephonyManager telMgr = (TelephonyManager) this.reactContext.getSystemService(Context.TELEPHONY_SERVICE);
     return telMgr.getNetworkOperatorName();
   }
-
+  @ReactMethod
+  public String getImsiNo() {
+    TelephonyManager telMgr = (TelephonyManager) this.reactContext.getSystemService(Context.TELEPHONY_SERVICE);
+    return telMgr.getSubscriberId();
+  }
   @ReactMethod
   public Integer getTotalDiskCapacity() {
     try {
@@ -345,6 +342,7 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
       constants.put("imsiNumber", telMgr.getSubscriberId());
     }
     constants.put("carrier", this.getCarrier());
+    constants.put("imsi", this.getImsiNo());
     constants.put("totalDiskCapacity", this.getTotalDiskCapacity());
     constants.put("freeDiskStorage", this.getFreeDiskStorage());
     constants.put("installReferrer", this.getInstallReferrer());

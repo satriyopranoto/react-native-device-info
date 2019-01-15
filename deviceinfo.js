@@ -250,6 +250,6 @@ export default {
     return RNDeviceInfo.isAirPlaneMode();
   },
   getImsi: function() {
-    return RNDeviceInfo.imsiNumber;//getImsiInfo();
+    return RNDeviceInfo.imsi;
   }
 };
