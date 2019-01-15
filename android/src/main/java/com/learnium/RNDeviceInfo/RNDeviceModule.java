@@ -79,11 +79,11 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   }
   @ReactMethod
   public String getImsiInfo() {
-    if (this.imsiInfo == null) {
+    //if (this.imsiInfo == null) {
       TelephonyManager manager = (TelephonyManager) reactContext.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-      this.imsiInfo = manager.getSubscriberId();
-    }
-    return this.imsiInfo;
+     // this.imsiInfo = manager.getSubscriberId();
+    //}
+    return manager.getSubscriberId();//this.imsiInfo;
   }
 
   private String getCurrentLanguage() {
@@ -342,6 +342,7 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
             getCurrentActivity().checkCallingOrSelfPermission("android.permission.READ_PHONE_NUMBERS") == PackageManager.PERMISSION_GRANTED)) {
       TelephonyManager telMgr = (TelephonyManager) this.reactContext.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
       constants.put("phoneNumber", telMgr.getLine1Number());
+      constants.put("imsiNumber", telMgr.getSubscriberId());
     }
     constants.put("carrier", this.getCarrier());
     constants.put("totalDiskCapacity", this.getTotalDiskCapacity());

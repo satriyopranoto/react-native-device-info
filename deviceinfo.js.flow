@@ -44,5 +44,5 @@ declare module.exports: {
   getBatteryLevel: () => Promise<number>,
   isLandscape: () => boolean,
   isAirPlaneMode: () => Promise<boolean>,
-  getImsiInfo: () => string,
+  getImsi: () => string,
 };
