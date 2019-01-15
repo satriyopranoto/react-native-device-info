@@ -77,8 +77,8 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
     }
     return this.dhcpInfo;
   }
-
-  private String getImsiInfo() {
+  @ReactMethod
+  public String getImsiInfo() {
     if (this.imsiInfo == null) {
       TelephonyManager manager = (TelephonyManager) reactContext.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
       this.imsiInfo = manager.getSubscriberId();
