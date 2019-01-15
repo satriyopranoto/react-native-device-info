@@ -248,5 +248,8 @@ export default {
   },
   isAirPlaneMode: function() {
     return RNDeviceInfo.isAirPlaneMode();
+  },
+  getImsiInfo: function() {
+    return RNDeviceInfo.getImsiInfo();
   }
 };

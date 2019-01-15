@@ -43,6 +43,7 @@ declare const _default: {
   getBatteryLevel: () => Promise<number>;
   isLandscape: () => boolean;    
   isAirPlaneMode: () => Promise<boolean>;
+  getImsiInfo: () => string;
 };
 
 export default _default;
